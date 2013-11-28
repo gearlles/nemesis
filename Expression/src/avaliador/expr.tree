@@ -1,0 +1,13 @@
+package avaliador.syntaxtree;
+
+
+Expr ::= {Numero} "float":val
+       | {Soma} Expr:a Expr:b
+       | {Subtracao} Expr:a Expr:b
+       | {Multiplicacao} Expr:a Expr:b
+       | {Divisao} Expr:a Expr:b
+       | {Potencia} Expr:a Expr:b
+       | {Seno} Expr:a
+       | {Cos} Expr:a
+       | {Variavel} 
+       

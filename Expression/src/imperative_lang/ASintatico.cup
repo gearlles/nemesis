@@ -1,0 +1,62 @@
+
+import imperative_lang.syntaxtree.*;
+
+terminal String VAR, OP1, OP2, OP3, OP4;
+terminal A_P, F_P, EQ, PV, A_CHAVE, F_CHAVE, A_COLCH, F_COLCH;
+terminal IF,WHILE, THEN, ELSE, INT, BOOL,STRUCT,POINTER, PONTO;
+terminal Integer NUM;
+
+
+non terminal Expr expr, lexpr;
+non terminal Com com;
+non terminal Block block;
+non terminal LCom comms;
+non terminal LDecl decls;
+non terminal Fields fields;
+non terminal Decl decl;
+non terminal Type type;
+
+precedence left OP1;
+precedence left OP2;
+precedence left OP3;
+precedence left OP4;
+
+start with block;
+
+expr      ::= NUM:n {: RESULT = new Numero(n); :};
+expr      ::= lexpr:l {: RESULT = l; :};
+expr	  ::= expr:a OP1:s expr:b {: RESULT = new Op(a,s,b); :} ;
+expr	  ::= expr:a OP2:s expr:b {: RESULT = new Op(a,s,b); :} ;
+expr	  ::= expr:a OP3:s expr:b {: RESULT = new Op(a,s,b); :} ;
+expr	  ::= expr:a OP4:s expr:b {: RESULT = new Op(a,s,b); :} ;
+expr	  ::= A_P expr:e F_P {: RESULT = e; :} ;
+
+lexpr 	  ::= VAR:s {: RESULT = new Variavel(s); :};
+lexpr	  ::= lexpr:arr A_COLCH expr:idx F_COLCH {: RESULT = new Array(arr,idx); :} ;
+lexpr    ::= lexpr:struct PONTO VAR:field {: RESULT = new Field(struct,field); :} ;
+lexpr	  ::= POINTER expr:e {: RESULT = new Reference(e); :};
+
+com	::= lexpr:l EQ expr:r PV {: RESULT = new Assign(l,r); :} ;
+com	::= IF A_P expr:e F_P THEN com:t ELSE com:f {: RESULT = new CIf(e,t,f); :};
+com	::= WHILE A_P expr:e F_P com:c  {: RESULT = new CWhile(e,c); :} ;
+com	::= block:b {: RESULT = b; :} ;
+
+block	::= A_CHAVE decls:d comms:c F_CHAVE {: RESULT = new Block(d,c); :} ;
+
+decls ::= decl:val decls:next {: RESULT = new LDecl(val,next); :};
+decls ::= {: RESULT = null; :};
+
+decl ::= type:t VAR:v PV {: RESULT = new Decl(t,v,null); :} ;
+decl ::= type VAR EQ expr PV;
+
+type ::= INT {: RESULT = new TInt(); :} ;
+type ::= BOOL {: RESULT = new TBool(); :} ;
+type ::= type:t A_COLCH NUM:n F_COLCH {: RESULT = new TArray(t,n); :} ;
+type ::= STRUCT A_CHAVE fields F_CHAVE ;
+type ::= type POINTER;
+
+fields ::= type:t VAR:v fields:prox ;
+fields ::= {: RESULT = null; :} ;
+
+comms	::= {: RESULT = null; :} ;
+comms	::= com:c comms:p {: RESULT = new LCom(c,p); :}  ;

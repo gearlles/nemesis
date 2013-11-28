@@ -1,0 +1,27 @@
+
+import avaliador.syntaxtree.*;
+
+terminal ELEV, SOMA, DIFE, PROD, DIVI, A, F;
+terminal SEN, COS, VAR;
+terminal Float NUM;
+
+
+non terminal Expr expr;
+
+precedence left SOMA, DIFE;
+precedence left PROD, DIVI;
+precedence left ELEV;
+
+start with expr;
+
+expr      ::= NUM:n {: RESULT = new Numero(n); :};
+expr      ::= VAR {: RESULT = new Variavel(); :};
+expr	  ::= expr:a SOMA expr:b {: RESULT = new Soma(a,b); :} ;
+expr	  ::= expr:a DIFE expr:b {: RESULT = new Subtracao(a,b); :} ;
+expr	  ::= expr:a PROD expr:b {: RESULT = new Multiplicacao(a,b); :} ;
+expr	  ::= expr:a DIVI expr:b {: RESULT = new Divisao(a,b); :} ;
+expr	  ::= expr:a ELEV expr:b {: RESULT = new Potencia(a,b); :} ;
+expr	  ::= SEN A expr:a F {: RESULT = new Seno(a); :} ;
+expr 	  ::= COS A expr:a F {: RESULT = new Cos(a); :};
+expr	  ::= A expr:e F {: RESULT = e; :} ;
+

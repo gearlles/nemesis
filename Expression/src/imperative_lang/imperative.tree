@@ -1,0 +1,31 @@
+package imperative_lang.syntaxtree;
+
+
+Expr ::= {Numero} "int":val
+       | {Op} Expr:a "String":op Expr:b
+       | {Variavel} "String":nome 
+       | {Array} Expr:array Expr:index
+       | {Field} Expr:struct "String":fieldName
+       | {Reference} Expr:pointer
+       | {DeReference} Expr:variable
+       
+Com		::= {Assign} Expr:left Expr:right
+		|   {CIf} Expr:test Com:caseTrue Com:caseFalse
+		|	{CWhile} Expr:test Com:rep
+		|	{Block} LDecl:decl LCom:seq 
+
+LDecl   ::= Decl:decl LDecl:prox
+		
+Decl	::= {VarDecl} Type:type "String":nome Expr:start
+
+Type	::= {TInt}
+		|	{TBool}
+		| 	{TArray} Type:type "int":size
+		|	{TStruct} Fields:fields
+		|	{TPointer} Type:type
+
+Fields	::= Type:type "String":name Fields:prox
+
+		
+LCom	::= Com:com LCom:prox
+		

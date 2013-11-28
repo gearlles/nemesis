@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compilador de Expressoes" default="CompileImp" basedir="."> 
+  <property name="HelloText" value="Hello"/>
+  <target name="CompileExpr">
+  	<mkdir dir="bin" />
+ 	<java jar="tools/JFlex.jar" fork="true" dir="src/" args="avaliador/ALexico.jflex" />
+ 	<java jar="tools/java-cup.jar" fork="true" dir="src/" args="-package avaliador -destdir avaliador avaliador/ASintatico.cup"/>
+  	<java jar="tools/classgen.jar" fork="true" dir="src/" args="-f -visitor avaliador/expr.tree"/>
+  	<javac srcdir="src" destdir="bin" classpath="tools/java-cup-runtime.jar"/>
+  </target>
+  <target name="clean">
+  	 <delete dir="bin"/>
+ 	 <delete file="src/avaliador/ALexico.java"/>
+ 	 <delete file="src/avaliador/ALexico.java~"/>
+	 <delete file="src/avaliador/parser.java"/>
+	 <delete file="src/avaliador/sym.java"/>
+  </target>
+	  <target name="CompileImp">
+	  	<mkdir dir="bin" />
+	 	<java jar="tools/JFlex.jar" fork="true" dir="src/" args="imperative_lang/ALexico.jflex" />
+	 	<java jar="tools/java-cup.jar" fork="true" dir="src/" args="-expect 2 -package imperative_lang -destdir imperative_lang imperative_lang/ASintatico.cup"/>
+	  	<java jar="tools/classgen.jar" fork="true" dir="src/" args="-f -visitor imperative_lang/imperative.tree"/>
+	  	<javac srcdir="src" destdir="bin" classpath="tools/java-cup-runtime.jar"/>
+	  </target>
+</project>
