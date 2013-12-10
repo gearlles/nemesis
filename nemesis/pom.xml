@@ -14,6 +14,23 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>de.jflex</groupId>
+        <artifactId>maven-jflex-plugin</artifactId>
+        <version>1.4.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <lexDefintions>
+                <lexDefinition>src/main/jflex</lexDefinition>
+              </lexDefintions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
