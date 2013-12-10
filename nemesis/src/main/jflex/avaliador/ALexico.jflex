@@ -12,6 +12,9 @@ import java_cup.runtime.*;
 
 %%
 "$header"		{ return new Symbol(sym.HEADER); }
+"$settings"		{ return new Symbol(sym.SETTINGS); }
+"$variables"	{ return new Symbol(sym.VARIABLES); }
+"$body"			{ return new Symbol(sym.BODY); }
 "$university"  	{ return new Symbol(sym.UNIVERSITY); }
 "$campi"  		{ return new Symbol(sym.CAMPI); }
 "$course"  		{ return new Symbol(sym.COURSE); }
