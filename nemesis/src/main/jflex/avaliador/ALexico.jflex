@@ -12,6 +12,9 @@ import java_cup.runtime.*;
 
 %%
 "$header"		{ return new Symbol(sym.HEADER); }
+"$settings"		{ return new Symbol(sym.SETTINGS); }
+"$variables"	{ return new Symbol(sym.VARIABLES); }
+"$body"			{ return new Symbol(sym.BODY); }
 "$university"  	{ return new Symbol(sym.UNIVERSITY); }
 "$campi"  		{ return new Symbol(sym.CAMPI); }
 "$course"  		{ return new Symbol(sym.COURSE); }
@@ -36,6 +39,7 @@ import java_cup.runtime.*;
 "{" 					{ return new Symbol(sym.OPENBRACKET); }
 "}" 					{ return new Symbol(sym.CLOSEBRACKET); }
 "$math"					{ return new Symbol(sym.MATH); }
+"="			{ return new Symbol(sym.EQUAL); }
 "+" 		{ return new Symbol(sym.SUM); }
 "*" 		{ return new Symbol(sym.MULTIPLICATION); }
 "-" 		{ return new Symbol(sym.DIFFERENCE); }
