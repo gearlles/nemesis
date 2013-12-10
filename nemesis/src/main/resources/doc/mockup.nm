@@ -1,11 +1,11 @@
 $header{
-	$university{"Universidade de Pernambuco"},
-	$campi{"Escola Politécnica de Pernambuco"},
-	$course{"Engenharia de Computação"},
-	$subject{"Compiladores"},
+	$university{"Universidade de Pernambuco"}
+	$campi{"Escola Politécnica de Pernambuco"}
+	$course{"Engenharia de Computação"}
+	$subject{"Compiladores"}
 
-	$title{"Primeiro Exercício Escolar"},
-	$date{@today}, /* or $date{@tomorrow}, $date{20 de Dezembro de 2013}, $date{12, 20, 2013} */
+	$title{"Primeiro Exercício Escolar"}
+	$date{@today} /* or $date{@tomorrow}, $date{20 de Dezembro de 2013}, $date{12, 20, 2013} */
 	$professor{"Luis Carlos Menezes"}
 }
 
@@ -14,66 +14,66 @@ $settings{
 }
 
 $variables{
-	@a = 4,
-	@b = 3 - 1,
-	@c = @rand
+	@a{4; 6; 9;}
+	@b{3 - 1;}
+	@c{@rand;}
 }
 
 $body{
 	$multipleChoiceQuestion{
-		$title{"Qual é a capital do Brasil?"},
-		$option{"Manaus"},
-		$option{"São Paulo"},
-		$option{"Rio de Janeiro"},
-		$option{"Recife"},
-		$option{"Brasília"},
-		$answer{"Brasília"},
+		$title{"Qual é a capital do Brasil?"}
+		$option{"Manaus"}
+		$option{"São Paulo"}
+		$option{"Rio de Janeiro"}
+		$option{"Recife"}
+		$option{"Brasília"}
+		$answer{"Brasília"}
 		$weight{1}
 	}
 
 	$freeAnswerQuestion{
-		$title{"Quantos andares tem o maior prédio do mundo?"},
+		$title{"Quantos andares tem o maior prédio do mundo?"}
 		$weight{2}
 	}
 
 	$freeAnswerQuestion{
-		$title{"Considerando a função " + $math{y = x^5 + 3 x^3 - 5} + ", responda as seguintes perguntas:"},
+		$title{"Considerando a função " + $math{y = x^5 + 3 x^3 - 5} + ", responda as seguintes perguntas:"}
 		$subQuestion{
-			$title{"Qual o vavor de " + $math{y} + ", se " + $math{x = 5} + "?"},
+			$title{"Qual o vavor de " + $math{y} + ", se " + $math{x = 5} + "?"}
 			$weight{1}
-		},
+		}
 		$subQuestion{
-			$title{"A função " + $math{y} + " é par?"},
+			$title{"A função " + $math{y} + " é par?"}
 			$weight{1}
-		},
+		}
 		$subQuestion{
-			$title{"Calcule a inversa de " + $math{y} + "."},
+			$title{"Calcule a inversa de " + $math{y} + "."}
 			$weight{1}
-		},
+		}
 		$weight{2}
 	}
 
 	$freeAnswerQuestion{
-		$title{"Qual o resultado da seguinte soma:" + $math{3 + @a - $pow{@b, 4} + @c}}, /* se @a, @b e @c devem estar em $variables{..."} */
+		$title{"Qual o resultado da seguinte soma:" + $math{3 + @a - $pow{@b, 4} + @c}} /* se @a, @b e @c devem estar em $variables{..."} */
 		$weight{2}
 	}
 
 	$freeAnswerQuestion{
 		$title{"Qual o resultado do código abaixo?"}
 		$solve{
-		   $content{$code{System.out.println("Teste");}},
+		   $content{$code{System.out.println("Teste");}}
 		   $solver{"JavaOutputSolver"}
 		}
 		$weight{2}
 	}
 
 	$trueFalseQuestion{
-		$title{"Considerando a função " + $math{y = x^2 + $sqrt{5}} + ", marque verdadeiro (V) ou falso (F) para as seguintes proposições:"},
-		$statement{"A função " + $math{y} + " é par."},
-		$statement{"A função " + $math{y} + " é ímpar."},
-		$statement{"A função " + $math{y} + " é quadrática."},
-		$statement{"A função " + $math{y} + " é exponencial."},
-		$statement{"A função " + $math{y} + " possue raízes reais."},
+		$title{"Considerando a função " + $math{y = x^2 + $sqrt{5}} + ", marque verdadeiro (V) ou falso (F) para as seguintes proposições:"}
+		$statement{"A função " + $math{y} + " é par."}
+		$statement{"A função " + $math{y} + " é ímpar."}
+		$statement{"A função " + $math{y} + " é quadrática."}
+		$statement{"A função " + $math{y} + " é exponencial."}
+		$statement{"A função " + $math{y} + " possue raízes reais."}
 		$weight{2}
 	}
 }
