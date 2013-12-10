@@ -1,4 +1,4 @@
-package nemesis;
+package br.poli.ecomp.nemesis;
 
 public class Main {
 
