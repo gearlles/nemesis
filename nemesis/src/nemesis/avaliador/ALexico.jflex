@@ -1,4 +1,4 @@
-package avaliador;
+package nemesis.avaliador;
 import java_cup.runtime.*;
 %%
 %cup
@@ -11,6 +11,7 @@ import java_cup.runtime.*;
 %eofval}
 
 %%
+"$header"		{ return new Symbol(sym.HEADER); }
 "$university"  	{ return new Symbol(sym.UNIVERSITY); }
 "$campi"  		{ return new Symbol(sym.CAMPI); }
 "$course"  		{ return new Symbol(sym.COURSE); }
@@ -47,5 +48,6 @@ import java_cup.runtime.*;
 ")" 		{ return new Symbol(sym.CLOSEPARENTHESES); }
 [0-9]+("."[0-9]+)? 		{ return new Symbol(sym.NUMBER, new Float(yytext())); }
 @{1}[a-zA-Z]+[0-9]*		{ return new Symbol(sym.VARIABLE); }
-.* 						{ return new Symbol(sym.STRING); }
+"{1}[\w .,;!?:\(\)\[\]\{\}]*"{1}		{ return new Symbol(sym.STRING); }
 [ \n\t\r\f] 			{ /* ignora espaços e saltos de linha */ }
+/\*.*\*/				{ /* ignora comentários */}
