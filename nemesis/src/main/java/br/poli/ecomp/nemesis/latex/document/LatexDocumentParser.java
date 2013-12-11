@@ -12,14 +12,13 @@ import org.apache.velocity.app.Velocity;
 public class LatexDocumentParser {
 	
 	private String template;
-	private final String TEMPLATE_FILE_NAME = "template.tex";
+	private final String TEMPLATE_FILE_PATH = "template/template.tex";
 	private final String HEADER_TOKEN = "HEADER";
 	private final String BODY_TOKEN = "BODY";
 	private final String FOOTER_TOKEN = "FOOTER";
 
 	public LatexDocumentParser() {
-		this.template = getStringFromInputStream(ClassLoader
-				.getSystemResourceAsStream(TEMPLATE_FILE_NAME));
+		this.template = getStringFromInputStream(ClassLoader.getSystemResourceAsStream(TEMPLATE_FILE_PATH));
 		Velocity.init();
 	} 
 	
@@ -81,4 +80,8 @@ public class LatexDocumentParser {
 
 	}
 
+	public static void main(String[] args) {
+		LatexDocumentParser l = new LatexDocumentParser();
+		System.out.println(l.replaceAll("header", "body", "footer"));
+	}
 }
