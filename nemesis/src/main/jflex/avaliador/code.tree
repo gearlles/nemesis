@@ -1,0 +1,54 @@
+package br.poli.ecomp.nemesis.syntaxtree;
+
+
+Document ::= Header:header Settings:settings Variables:variables Body:body Footer:footer
+
+Header ::= LHCom:lhcom
+LHCom ::= HCom:hcom LHCom:prox
+HCom ::= 	{University} "String":text
+		| 	{Campi} "String":text
+		| 	{Course} "String":text
+		| 	{Subject} "String":text
+		| 	{Title} "String":text
+		| 	{Professor} "String":text
+		| 	{LiteralDate} "String":text
+		| 	{VariableDate} "String":var
+
+Settings ::= LSCom:lscom
+LSCom ::= SCom:scom LSCom:prox
+SCom ::= 	{MaximumScore} "float":val
+		|	{RandomOrder}
+
+Variables ::= LVCom:lvcom
+LVCom ::= VCom:vcom LVCom:prox
+VCom ::= 	Declaration:declaration
+Declaration ::= Variable:var LNum:value
+LNum ::= "float":num LNum:prox
+
+Body ::= LBCom:lbcom
+LBCom ::= BCom:bcom LBCom:prox
+BCom ::= 	{Group} Title:title LQuestion:lquestion Weight:weight
+		|	{Question} 
+	
+LQuestion ::= Question:question LQuestion:prox
+
+Question ::={MultipleChoiceQuestion} Title:title LOptions:options Weight:weight Answer:answer
+		|	{FreeAnswerQuestion} Title:title Weight:weight Answer:answer
+		|	{TrueFalseQuestion} Title:title LStatement:lstatement Weight:weight Answer:answer
+		
+LOptions ::= Option:option LOptions:prox
+LStatement ::= Statement:statement LStatement:prox
+
+Answer ::= LContent:lcontent "String":solver
+LContent ::= Content:content LContent:prox
+Content ::= {Math} "String":text
+		|	{Text} "String":text
+		| 	{Variable} "String":name
+
+Option ::= "String":text
+Statement ::= "String":text
+
+Footer ::= "String":text
+
+Weight ::= "int":val
+		

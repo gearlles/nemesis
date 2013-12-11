@@ -1,3 +1,6 @@
+import br.poli.ecomp.nemesis.syntaxtree.*;
+import br.poli.ecomp.nemesis.syntaxtree.Math;
+
 terminal HEADER, SETTINGS, VARIABLES, BODY, UNIVERSITY, CAMPI, COURSE, SUBJECT, TITLE;
 terminal DATE, PROFESSOR, MAXIMUMSCORE, MULTIPLECHOICEQUESTION, GROUP;
 terminal OPTION, ANSWER, WEIGHT, FREEANSWERQUESTION;
@@ -21,10 +24,10 @@ non terminal Body body;
 non terminal BCom bcom;
 non terminal LBCom bcoms;
 non terminal Footer footer;
-non terminal CTitle ctitle;
-non terminal COption coption;
-non terminal CWeight cweight;
-non terminal CStatement cstatement;
+non terminal Title ctitle;
+non terminal Option coption;
+non terminal Weight cweight;
+non terminal Statement cstatement;
 non terminal MultipleChoiceQuestion mquestion;
 non terminal LOptions loptions;
 non terminal FreeAnswerQuestion faquestion;
@@ -67,7 +70,7 @@ variables ::= VARIABLES OPENBRACKET vcoms:a CLOSEBRACKET {: RESULT = new Variabl
 vcoms ::= {: RESULT = null; :};
 vcoms ::= vcom:a vcoms:b {: RESULT = new LVCom(a, b); :};
 
-vcom ::= VARIABLE:v OPENBRACKET lnum:l CLOSEBRACKET {: RESULT = new Variable(l); :};
+vcom ::= VARIABLE:v OPENBRACKET lnum:l CLOSEBRACKET {: RESULT = new VCom(new Declaration(new Variable(v), l)); :};
 
 lnum ::= NUMBER:n {: RESULT = new LNum(n, null); :};
 lnum ::= NUMBER:n SEP lnum:l {: RESULT = new LNum(n, l); :};
@@ -77,16 +80,16 @@ body ::= BODY OPENBRACKET bcoms:a CLOSEBRACKET {: RESULT = new Body(a); :};
 bcoms ::= {: RESULT = null; :};
 bcoms ::= bcom:a bcoms:b {: RESULT = new LBCom(a, b); :};
 
-bcom ::= group:g {: RESULT = new Group(g); :};
-bcom ::= question:q {: RESULT = new Question(q); :};
+bcom ::= GROUP OPENBRACKET ctitle:c lquestion:q cweight:w CLOSEBRACKET {: RESULT = new Group(c, q, w); :};
+bcom ::= question:q {: RESULT = q; :};
 
-question::= MULTIPLECHOICEQUESTION OPENBRACKET mquestion:a CLOSEBRACKET {: new Question(a); :};
-question::= FREEANSWERQUESTION OPENBRACKET faquestion:a CLOSEBRACKET {: RESULT = new Question(a); :};
-question::= TRUEFALSEQUESTION OPENBRACKET tfquestion:a CLOSEBRACKET {: RESULT = new Question(a); :};
+question::= MULTIPLECHOICEQUESTION OPENBRACKET mquestion:a CLOSEBRACKET {: RESULT = a; :};
+question::= FREEANSWERQUESTION OPENBRACKET faquestion:a CLOSEBRACKET {: RESULT = a; :};
+question::= TRUEFALSEQUESTION OPENBRACKET tfquestion:a CLOSEBRACKET {: RESULT = a; :};
 
 mquestion ::= ctitle:t loptions:o cweight:w {: RESULT = new MultipleChoiceQuestion(t, o, w, null); :};
 mquestion ::= ctitle:t loptions:o cweight:w answer:a {: RESULT = new MultipleChoiceQuestion(t, o, w, a); :};
-loptions ::= coption:a {: RESULT = new LOptions(a); :};
+loptions ::= coption:a {: RESULT = new LOptions(a, null); :};
 loptions ::= coption:a loptions:b {: RESULT = new LOptions(a, b); :};
 
 faquestion ::= ctitle:t cweight:w {: RESULT = new FreeAnswerQuestion(t, w, null); :};
@@ -100,22 +103,22 @@ tfquestion ::= ctitle:t lstatement:l cweight:w answer:a {: RESULT = new TrueFals
 lstatement ::= cstatement:s {: RESULT = new LStatement(s, null); :};
 lstatement ::= cstatement:s lstatement:t {: RESULT = new LStatement(s, t); :};
 
-lcontent ::= {: RESULT = NULL; :};
+lcontent ::= {: RESULT = null; :};
 lcontent ::= content:c SUM lcontent:l {: RESULT = new LContent(c, l); :};
 
 content ::= MATH OPENBRACKET STRING:e CLOSEBRACKET {: RESULT = new Math(e); :};
-content ::= STRING:s {: RESULT = s; :};
+content ::= STRING:s {: RESULT = new Text(s); :};
 content ::= VARIABLE:v {: RESULT = new Variable(v); :};
 
-ctitle ::= TITLE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new CTitle(s); :};
-coption ::= OPTION OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new COption(s); :};
-cweight ::= WEIGHT OPENBRACKET NUMBER:n CLOSEBRACKET {: RESULT = new CWeight(n); :};
-cstatement ::= STATEMENT OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new CStatement(s); :};
+ctitle ::= TITLE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Title(s); :};
+coption ::= OPTION OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Option(s); :};
+cweight ::= WEIGHT OPENBRACKET NUMBER:n CLOSEBRACKET {: RESULT = new Weight(n); :};
+cstatement ::= STATEMENT OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Statement(s); :};
 
-group ::= GROUP OPENBRACKET ctitle:c lquestion:q cweight:w CLOSEBRACKET {: RESULT = new Group(c, f, w); :};
-
-lquestion ::= question:q {: RESULT = new Question(q, null); :};
-lquestion ::= question:q lquestion:l {: RESULT = new Question(q, l); :};
+lquestion ::= question:q {: RESULT = new LQuestion(q, null); :};
+lquestion ::= question:q lquestion:l {: RESULT = new LQuestion(q, l); :};
 
 footer ::= FOOTER OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Footer(s); :};
+
+
 
