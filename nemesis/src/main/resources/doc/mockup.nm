@@ -15,7 +15,7 @@ $settings{
 
 $variables{
 	@a{4, 6, 9}	
-	@b{3 - 1}	
+	@b{3}	
 	@c{@rand}	
 }
 
@@ -37,24 +37,24 @@ $body{
 	}
 
 	$group{
-		$title{"Considere a função " + $math{y = x^5 + 3 x^3 - 5} + "."}
+		$title{"Considere a função " + $math{"y = x^5 + 3 x^3 - 5"} + "."}
 		$freeAnswerQuestion{
-			$title{"Qual o vavor de " + $math{y} + ", se " + $math{x = 5} + "?"}
+			$title{"Qual o vavor de " + $math{"y"} + ", se " + $math{"x = 5"} + "?"}
 			$weight{1}
 		}
 		$freeAnswerQuestion{
-			$title{"A função " + $math{y} + " é par?"}
+			$title{"A função " + $math{"y"} + " é par?"}
 			$weight{1}
 		}
 		$freeAnswerQuestion{
-			$title{"Calcule a inversa de " + $math{y} + "."}
+			$title{"Calcule a inversa de " + $math{"y"} + "."}
 			$weight{1}
 		}
 		$weight{2}
 	}
 
 	$freeAnswerQuestion{
-		$title{"Qual o resultado da seguinte soma:" + $math{3 + @a - $pow{@b, 4} + @c}}
+		$title{"Qual o resultado da seguinte soma:" + $math{"5 + 2"}}
 		$weight{2}
 	}
 
@@ -68,12 +68,12 @@ $body{
 	}
 
 	$trueFalseQuestion{
-		$title{"Considerando a função " + $math{y = x^2 + $sqrt{5}} + ", marque verdadeiro (V) ou falso (F) para as seguintes proposições:"}
-		$statement{"A função " + $math{y} + " é par."}
-		$statement{"A função " + $math{y} + " é ímpar."}
-		$statement{"A função " + $math{y} + " é quadrática."}
-		$statement{"A função " + $math{y} + " é exponencial."}
-		$statement{"A função " + $math{y} + " possue raízes reais."}
+		$title{"Considerando a função " + $math{"y = x^2 + $sqrt{5}"} + ", marque verdadeiro (V) ou falso (F) para as seguintes proposições:"}
+		$statement{"A função " + $math{"y"} + " é par."}
+		$statement{"A função " + $math{"y"} + " é ímpar."}
+		$statement{"A função " + $math{"y"} + " é quadrática."}
+		$statement{"A função " + $math{"y"} + " é exponencial."}
+		$statement{"A função " + $math{"y"} + " possue raízes reais."}
 		$weight{2}
 		$answer{$data{"VVVFF"}}
 	}

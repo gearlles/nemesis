@@ -11,9 +11,8 @@ import br.poli.ecomp.nemesis.avaliador.parser;
 public class Main {
 
 	public static void main(String[] args) throws internal_error, IOException, Exception {
-		ALexico lex = new ALexico(new FileInputStream("C:\\Users\\Felipe\\git2\\nemesis\\nemesis\\src\\main\\resources\\doc\\mockup.nm"));
+		ALexico lex = new ALexico(new FileInputStream("src/main/resources/doc/mockup.nm"));
 		parser p = new parser(lex);
 		Symbol program = p.parse();
-		
 	}
 }
