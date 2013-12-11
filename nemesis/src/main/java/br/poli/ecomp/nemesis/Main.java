@@ -14,5 +14,6 @@ public class Main {
 		ALexico lex = new ALexico(new FileInputStream("src/main/resources/doc/mockup.nm"));
 		parser p = new parser(lex);
 		Symbol program = p.parse();
+		System.out.println(program.value);
 	}
 }
