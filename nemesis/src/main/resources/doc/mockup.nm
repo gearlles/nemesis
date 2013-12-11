@@ -54,7 +54,7 @@ $body{
 	}
 
 	$freeAnswerQuestion{
-		$title{"Qual o resultado da seguinte soma:" + $math{"5 + 2"} + "."}
+		$title{"Qual o resultado da seguinte soma:" + $math{"5 + 2"}}
 		$weight{2}
 	}
 
