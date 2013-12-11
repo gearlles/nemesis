@@ -14,9 +14,9 @@ $settings{
 }
 
 $variables{
-	@a{4; 6; 9;}	/* uma dos valores será o valor de "a" */
-	@b{3 - 1;}		/* "b" será 2 */
-	@c{@rand;}		/* "c" será um valor aleatório */
+	@a{4, 6, 9}		/* uma dos valores será o valor de "a" */
+	@b{3 - 1}		/* "b" será 2 */
+	@c{@rand}		/* "c" será um valor aleatório */
 }
 
 $body{
@@ -27,8 +27,8 @@ $body{
 		$option{"Rio de Janeiro"}
 		$option{"Recife"}
 		$option{"Brasília"}
-		$answer{"Brasília"}
 		$weight{1}
+		$answer{$data{"Brasília"}}
 	}
 
 	$freeAnswerQuestion{
@@ -36,17 +36,17 @@ $body{
 		$weight{2}
 	}
 
-	$freeAnswerQuestion{
-		$title{"Considerando a função " + $math{y = x^5 + 3 x^3 - 5} + ", responda as seguintes perguntas:"}
-		$subQuestion{
+	$group{
+		$title{"Considere a função " + $math{y = x^5 + 3 x^3 - 5} + "."}
+		$freeAnswerQuestion{
 			$title{"Qual o vavor de " + $math{y} + ", se " + $math{x = 5} + "?"}
 			$weight{1}
 		}
-		$subQuestion{
+		$freeAnswerQuestion{
 			$title{"A função " + $math{y} + " é par?"}
 			$weight{1}
 		}
-		$subQuestion{
+		$freeAnswerQuestion{
 			$title{"Calcule a inversa de " + $math{y} + "."}
 			$weight{1}
 		}
@@ -54,17 +54,17 @@ $body{
 	}
 
 	$freeAnswerQuestion{
-		$title{"Qual o resultado da seguinte soma:" + $math{3 + @a - $pow{@b, 4} + @c}} /* se @a, @b e @c devem estar em $variables{..."} */
+		$title{"Qual o resultado da seguinte soma:" + $math{3 + @a - $pow{@b, 4} + @c}}
 		$weight{2}
 	}
 
 	$freeAnswerQuestion{
 		$title{"Qual o resultado do código abaixo?"}
-		$solve{
-		   $content{$code{System.out.println("Teste");}}
+		$weight{2}
+		$answer{
+		   $data{"System.out.println(\"Teste\");"}
 		   $solver{"JavaOutputSolver"}
 		}
-		$weight{2}
 	}
 
 	$trueFalseQuestion{
@@ -75,6 +75,7 @@ $body{
 		$statement{"A função " + $math{y} + " é exponencial."}
 		$statement{"A função " + $math{y} + " possue raízes reais."}
 		$weight{2}
+		$answer{$data{"VVVFF"}}
 	}
 }
 
