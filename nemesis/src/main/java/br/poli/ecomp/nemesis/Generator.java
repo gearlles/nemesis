@@ -315,13 +315,13 @@ public class Generator implements Visitor {
 
 	@Override
 	public void visit(Math math) {
-		// TODO Auto-generated method stub
+		this.dest.append("\\equation{" + math.getText() + "}");
 
 	}
 
 	@Override
 	public void visit(Text text) {
-		// TODO Auto-generated method stub
+		this.dest.append(text);
 
 	}
 
