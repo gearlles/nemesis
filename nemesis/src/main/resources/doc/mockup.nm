@@ -14,9 +14,9 @@ $settings{
 }
 
 $variables{
-	@a{4; 6; 9;}	/* uma dos valores será o valor de "a" */
-	@b{3 - 1;}		/* "b" será 2 */
-	@c{@rand;}		/* "c" será um valor aleatório */
+	@a{4, 6, 9}		/* uma dos valores será o valor de "a" */
+	@b{3 - 1}		/* "b" será 2 */
+	@c{@rand}		/* "c" será um valor aleatório */
 }
 
 $body{
