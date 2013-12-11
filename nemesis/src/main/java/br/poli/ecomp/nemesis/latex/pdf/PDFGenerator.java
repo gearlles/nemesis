@@ -13,7 +13,13 @@ public class PDFGenerator {
 			"C:\\Users\\gearl_000\\Desktop\\tutorial\\test.tex");
 	private File outputFolder = new File(
 			"C:\\Users\\gearl_000\\Desktop\\tutorial");
-
+	
+	public PDFGenerator(File pdfLatexFile, File texFile, File outputFolder) {
+		this.pdfLatexFile = pdfLatexFile;
+		this.texFile = texFile;
+		this.outputFolder = outputFolder;
+	}
+	
 	public boolean generate() {
         try {
             JLRGenerator pdfGen = new JLRGenerator();  

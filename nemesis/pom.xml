@@ -80,5 +80,10 @@
 			<artifactId>jflex</artifactId>
 			<version>1.4.3</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
 	</dependencies>
 </project> 
