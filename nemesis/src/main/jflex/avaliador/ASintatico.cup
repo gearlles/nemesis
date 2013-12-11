@@ -53,7 +53,7 @@ hcom ::= UNIVERSITY OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new University
 hcom ::= CAMPI OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Campi(s); :};
 hcom ::= COURSE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Course(s); :};
 hcom ::= SUBJECT OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Subject(s); :};
-hcom ::= TITLE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Title(s); :};
+hcom ::= TITLE OPENBRACKET lcontent:s CLOSEBRACKET {: RESULT = new Title(s); :};
 hcom ::= PROFESSOR OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Professor(s); :};
 hcom ::= DATE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new LiteralDate(s); :};
 hcom ::= DATE OPENBRACKET VARIABLE:s CLOSEBRACKET {: RESULT = new VariableDate(s); :};
@@ -104,21 +104,22 @@ lstatement ::= cstatement:s {: RESULT = new LStatement(s, null); :};
 lstatement ::= cstatement:s lstatement:t {: RESULT = new LStatement(s, t); :};
 
 lcontent ::= {: RESULT = null; :};
+lcontent ::= content:c {: RESULT = new LContent(c, null); :};
 lcontent ::= content:c SUM lcontent:l {: RESULT = new LContent(c, l); :};
 
 content ::= MATH OPENBRACKET STRING:e CLOSEBRACKET {: RESULT = new Math(e); :};
 content ::= STRING:s {: RESULT = new Text(s); :};
 content ::= VARIABLE:v {: RESULT = new Variable(v); :};
 
-ctitle ::= TITLE OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Title(s); :};
-coption ::= OPTION OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Option(s); :};
+ctitle ::= TITLE OPENBRACKET lcontent:s CLOSEBRACKET {: RESULT = new Title(s); :};
+coption ::= OPTION OPENBRACKET lcontent:s CLOSEBRACKET {: RESULT = new Option(s); :};
 cweight ::= WEIGHT OPENBRACKET NUMBER:n CLOSEBRACKET {: RESULT = new Weight(n); :};
-cstatement ::= STATEMENT OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Statement(s); :};
+cstatement ::= STATEMENT OPENBRACKET lcontent:s CLOSEBRACKET {: RESULT = new Statement(s); :};
 
 lquestion ::= question:q {: RESULT = new LQuestion(q, null); :};
 lquestion ::= question:q lquestion:l {: RESULT = new LQuestion(q, l); :};
 
-footer ::= FOOTER OPENBRACKET STRING:s CLOSEBRACKET {: RESULT = new Footer(s); :};
+footer ::= FOOTER OPENBRACKET lcontent:s CLOSEBRACKET {: RESULT = new Footer(s); :};
 
 
 

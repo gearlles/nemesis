@@ -9,7 +9,7 @@ HCom ::= 	{University} "String":text
 		| 	{Campi} "String":text
 		| 	{Course} "String":text
 		| 	{Subject} "String":text
-		| 	{Title} "String":text
+		| 	{Title} LContent:content
 		| 	{Professor} "String":text
 		| 	{LiteralDate} "String":text
 		| 	{VariableDate} "String":var
@@ -45,10 +45,10 @@ Content ::= {Math} "String":text
 		|	{Text} "String":text
 		| 	{Variable} "String":name
 
-Option ::= "String":text
-Statement ::= "String":text
+Option ::= LContent:content
+Statement ::= LContent:content
 
-Footer ::= "String":text
+Footer ::= LContent:content
 
 Weight ::= "float":val
 		
