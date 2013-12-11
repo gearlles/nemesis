@@ -41,6 +41,5 @@ import java_cup.runtime.*;
 "}" 										{ return new Symbol(sym.CLOSEBRACKET); }
 [0-9]+("."[0-9]+)? 							{ return new Symbol(sym.NUMBER, new Float(yytext())); }
 @{1}[a-zA-Z]+[0-9]*							{ return new Symbol(sym.VARIABLE); }
-"\"{1}[\w .,;!?:\(\)\[\]\{\}]*\"{1}"		{ return new Symbol(sym.STRING); }
+\".*\" 										{ return new Symbol(sym.STRING); }
 [ \n\t\r\f] 								{ /* ignora espaços e saltos de linha */ }
-"/\\*.*\\*/"								{ /* ignora comentários */}
