@@ -1,4 +1,4 @@
-package nemesis.avaliador;
+package br.poli.ecomp.nemesis.avaliador;
 import java_cup.runtime.*;
 %%
 %cup
@@ -31,12 +31,12 @@ import java_cup.runtime.*;
 "$weight"									{ return new Symbol(sym.WEIGHT); }
 "$freeAnswerQuestion"						{ return new Symbol(sym.FREEANSWERQUESTION); }
 "$data"										{ return new Symbol(sym.DATA); }
-"$content"									{ return new Symbol(sym.CONTENT); }
 "$solver"									{ return new Symbol(sym.SOLVER); }
-"$code"										{ return new Symbol(sym.CODE); }
 "$math"										{ return new Symbol(sym.MATH); }
 "$trueFalseQuestion"						{ return new Symbol(sym.TRUEFALSEQUESTION); }
 "$statement"								{ return new Symbol(sym.STATEMENT); }
+"+"											{ return new Symbol(sym.SUM); }
+","											{ return new Symbol(sym.SEP); }
 "{" 										{ return new Symbol(sym.OPENBRACKET); }
 "}" 										{ return new Symbol(sym.CLOSEBRACKET); }
 [0-9]+("."[0-9]+)? 							{ return new Symbol(sym.NUMBER, new Float(yytext())); }
