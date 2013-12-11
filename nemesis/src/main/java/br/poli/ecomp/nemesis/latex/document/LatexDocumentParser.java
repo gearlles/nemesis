@@ -9,6 +9,13 @@ import java.io.StringWriter;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
+/**
+ * Classe responsável por formar um documento Latex. Através
+ * do template localizado em src/main/resources, ela faz o replace
+ * dos tokens do template por valores passados por parâmetro 
+ * das funções.
+ *
+ */
 public class LatexDocumentParser {
 	
 	private String template;

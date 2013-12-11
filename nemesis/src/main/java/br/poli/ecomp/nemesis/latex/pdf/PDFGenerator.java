@@ -5,6 +5,10 @@ import java.io.IOException;
 
 import de.nixosoft.jlr.JLRGenerator;
 
+/**
+ * Converte um arquivo .tex em um PDF.
+ *
+ */
 public class PDFGenerator {
 
 	private File pdfLatexFile = new File(
