@@ -4,8 +4,8 @@
 	<property name="HelloText" value="Hello" />
 	<target name="CompileImp">
 		<mkdir dir="bin" />
-		<java jar="C:/Users/Nestor/.m2/repository/de/jflex/jflex/1.4.3/jflex-1.4.3.jar" fork="true" dir="src/" args="main/jflex/avaliador/ALexico.jflex" />
-		<java classpath="C:/Users/Nestor/.m2/repository/edu/princeton/cup/java-cup/10k/java-cup-10k.jar" classname="java_cup.Main" fork="true" dir="src/" args="-expect 2 -package br.poli.ecomp.nemesis.avaliador main/jflex/avaliador/ASintatico.cup" />
+		<java jar="C:/Users/gearl_000/.m2/repository/de/jflex/jflex/1.4.3/jflex-1.4.3.jar" fork="true" dir="src/" args="main/jflex/avaliador/ALexico.jflex" />
+		<java classpath="C:/Users/gearl_000/.m2/repository/edu/princeton/cup/java-cup/10k/java-cup-10k.jar" classname="java_cup.Main" fork="true" dir="src/" args="-expect 2 -package br.poli.ecomp.nemesis.avaliador main/jflex/avaliador/ASintatico.cup" />
 		<java jar="tools/classgen.jar" fork="true" dir="src/" args="-f -visitor main/jflex/avaliador/code.tree"/>
 	</target>
 </project> 

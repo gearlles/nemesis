@@ -133,8 +133,13 @@ public class Generator implements Visitor {
 
 	@Override
 	public void visit(LOptions lOptions) {
-		// TODO Auto-generated method stub
-
+		if (lOptions == null)
+		{
+			return;
+		}
+		this.dest.append("\\item ");
+		lOptions.getOption().accept(this);
+		lOptions.getProx().accept(this);
 	}
 
 	@Override
@@ -211,13 +216,13 @@ public class Generator implements Visitor {
 
 	@Override
 	public void visit(Title title) {
-		// TODO Auto-generated method stub
+		this.dest.append(title.getText());
 
 	}
 
 	@Override
 	public void visit(Professor professor) {
-		// TODO Auto-generated method stub
+		this.dest.append("\textsc{Professor: " + professor.getText() + "}");
 
 	}
 
@@ -271,20 +276,35 @@ public class Generator implements Visitor {
 
 	@Override
 	public void visit(MultipleChoiceQuestion multipleChoiceQuestion) {
-		// TODO Auto-generated method stub
-
+		this.dest.append("\\item{");
+		multipleChoiceQuestion.getTitle().accept(this);
+		this.dest.append("}");
+		this.dest.append("\\begin{enumerate}");
+		multipleChoiceQuestion.getOptions().accept(this);
+		this.dest.append("\\end{enumerate}");
+		multipleChoiceQuestion.getWeight().accept(this);
+		if (multipleChoiceQuestion.getAnswer() != null) {
+			multipleChoiceQuestion.getAnswer().accept(this);
+		}
 	}
 
 	@Override
 	public void visit(FreeAnswerQuestion freeAnswerQuestion) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void visit(TrueFalseQuestion trueFalseQuestion) {
-		// TODO Auto-generated method stub
-
+		this.dest.append("\\item{");
+		trueFalseQuestion.getTitle().accept(this);
+		this.dest.append("}");
+		this.dest.append("\\begin{itemize}");
+		trueFalseQuestion.getOptions().accept(this);
+		this.dest.append("\\end{itemize}");
+		
+		if (trueFalseQuestion.getAnswer() != null) {
+			trueFalseQuestion.getAnswer().accept(this);
+		}
 	}
 
 	@Override
