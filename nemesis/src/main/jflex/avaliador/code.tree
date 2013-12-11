@@ -50,5 +50,5 @@ Statement ::= "String":text
 
 Footer ::= "String":text
 
-Weight ::= "int":val
+Weight ::= "float":val
 		
